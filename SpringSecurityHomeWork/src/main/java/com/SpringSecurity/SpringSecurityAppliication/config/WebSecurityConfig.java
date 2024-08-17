@@ -18,7 +18,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.SpringSecurity.SpringSecurityAppliication.filters.JwtAuthFilter;
-import com.SpringSecurity.SpringSecurityAppliication.filters.LoggingFilter;
+import com.SpringSecurity.SpringSecurityAppliication.filters.LoggingFilters;
 
 import lombok.RequiredArgsConstructor;
 
@@ -28,7 +28,7 @@ import lombok.RequiredArgsConstructor;
 public class WebSecurityConfig {
 
     private final JwtAuthFilter jwtAuthFilter;
-    private final LoggingFilter loggingFilter;
+    private final LoggingFilters loggingFilters;
     
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
@@ -42,8 +42,8 @@ public class WebSecurityConfig {
         .anyRequest().authenticated()) // all other request has to be authenticated
         .csrf(csrfConfig->csrfConfig.disable()) //it will disable the csrf login token and if we don't use login page so we don't need it csrf token either right
         .sessionManagement(sessionconfig-> sessionconfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // we will use JWT token for these 
-        .addFilterBefore(loggingFilter, UsernamePasswordAuthenticationFilter.class)
-        .addFilterBefore( jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+        .addFilterBefore( jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+        .addFilterBefore( loggingFilters , JwtAuthFilter.class );
            
         // .formLogin(Customizer.withDefaults()); // this will create a html login form by default but we don't need it on backend bcz it's a duty of frontend to create login page for us
 

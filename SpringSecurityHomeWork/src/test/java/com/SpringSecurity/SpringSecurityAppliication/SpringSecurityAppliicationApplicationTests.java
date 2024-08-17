@@ -16,7 +16,7 @@ class SpringSecurityAppliicationApplicationTests {
 
 	@Test
 	void contextLoads() {
-		User user= new User(4L , "rohit@gmail.com" , "1234" , "rohit");
+		User user= new User(4L , "rohit@gmail.com" , "1234" , "rohit", null);
 
 		String token = jwtService.createTokens(user);
 

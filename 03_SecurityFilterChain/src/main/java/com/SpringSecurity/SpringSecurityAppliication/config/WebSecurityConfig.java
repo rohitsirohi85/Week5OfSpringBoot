@@ -32,7 +32,7 @@ public class WebSecurityConfig {
         .anyRequest().authenticated())
         .csrf(csrfConfig->csrfConfig.disable()) //it will disable the csrf login token and if we don't use login page so we don't need it csrf token either right
         .sessionManagement(sessionconfig-> sessionconfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS)); // we will use JWT token for these 
-        // .formLogin(Customizer.withDefaults());                // this will create a html login form by default but we don't need it on backend bcz it's a duty of frontend to create login page for us
+         //.formLogin(Customizer.withDefaults());                // this will create a html login form by default but we don't need it on backend bcz it's a duty of frontend to create login page for us
            
 
 

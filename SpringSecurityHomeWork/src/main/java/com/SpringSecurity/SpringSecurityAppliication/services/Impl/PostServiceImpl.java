@@ -1,4 +1,4 @@
-package com.SpringSecurity.SpringSecurityAppliication.services;
+package com.SpringSecurity.SpringSecurityAppliication.services.Impl;
 
 import java.util.List;
 
@@ -11,6 +11,7 @@ import com.SpringSecurity.SpringSecurityAppliication.Entity.User;
 import com.SpringSecurity.SpringSecurityAppliication.dto.PostDto;
 import com.SpringSecurity.SpringSecurityAppliication.exceptions.ResourceNotFoundException;
 import com.SpringSecurity.SpringSecurityAppliication.repo.PostRepo;
+import com.SpringSecurity.SpringSecurityAppliication.services.PostService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
