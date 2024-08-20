@@ -39,8 +39,8 @@ public class User implements UserDetails {
 
     private String name;
 
-      @OneToOne(mappedBy = "user")
-    private SessionEntity session;
+     
+  
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

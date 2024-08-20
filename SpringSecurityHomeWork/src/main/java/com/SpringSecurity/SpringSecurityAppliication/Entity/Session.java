@@ -8,33 +8,27 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
+@Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString
-@Entity
-@Table(name = "session")
-public class SessionEntity {
-
+public class Session {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
 
     private String token;
 
- @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
     @CreationTimestamp
     private LocalDateTime lastUsedAt;
-    
+
+    @ManyToOne
+    private User user;
 }

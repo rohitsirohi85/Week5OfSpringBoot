@@ -14,20 +14,21 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthService {
     
-             private final AuthenticationManager authenticationManager;  // only used for authentication
-         private final JwtService jwtService;
+    private final AuthenticationManager authenticationManager;  // only used for authentication
+     private final JwtService jwtService;
+private final SessionService sessionService;
 
-          public String login(LoginDto loginDto) {
-    Authentication authentication = authenticationManager.authenticate(
-             new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword())
-      );
+     public String login(LoginDto loginDto) {
+         Authentication authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword())
+        );
 
-
-      // it will create and return token if login success
+  // it will create and return token if login success
 
       User user = (User) authentication.getPrincipal();
       String token = jwtService.createTokens(user);
+      sessionService.generateSession(user , token);
       return token;
-   }
+    }
 
 }
